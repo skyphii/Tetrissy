@@ -1,0 +1,9 @@
+--------------------------------
+        TETRISSY TO-DO          
+--------------------------------
+
+> create base classes for tetris pieces & fundamentals
+> create GameManager script to handle gameobjects
+> implement networking backend
+> implement falling pieces gameplay loop
+> implement shape rotation
