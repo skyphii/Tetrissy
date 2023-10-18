@@ -8,4 +8,4 @@
 > Implement falling pieces gameplay loop
 > Implement shape rotation
 > Epic gamer music
-> Change intro cont to collapse into tetris pieces
+> Change intro font to collapse into tetris pieces
