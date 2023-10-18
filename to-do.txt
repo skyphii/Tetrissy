@@ -2,9 +2,10 @@
         TETRISSY TO-DO          
 --------------------------------
 
-> create base classes for tetris pieces & fundamentals
-> create GameManager script to handle gameobjects
-> implement networking backend
-> implement falling pieces gameplay loop
-> implement shape rotation
-> epic gamer music
+> Create base classes for tetris pieces & fundamentals
+> Create GameManager script to handle gameobjects
+> Implement networking backend
+> Implement falling pieces gameplay loop
+> Implement shape rotation
+> Epic gamer music
+> Change intro cont to collapse into tetris pieces
