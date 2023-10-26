@@ -15,24 +15,37 @@ Utils.HEIGHT = 1000
 screen = pygame.display.set_mode([Utils.WIDTH, Utils.HEIGHT])
 pygame.display.set_caption("Tetrissy (in-dev)")
 
+lock = threading.Lock()
 gameActive = False
 gameObjects = []
 board = Board(Utils.WIDTH/2-250, 0, 500, 1000)
+threads = []
 
 def drop_shapes():
-    gameActive = True
+    global gameActive
     while gameActive:
         sleep(0.25)
         if board.activeShape == -1:
-            board.dropShape()
+            with lock:
+                board.dropShape()
+
+def update_board():
+    global gameActive
+    while gameActive:
+        sleep(1)
+        with lock:
+            board.fall()
 
 def start_game():
+    global gameActive
     print("Game started.")
     gameObjects.clear()
     gameObjects.append(board)
     gameActive = True
-    shape_thread = threading.Thread(target=drop_shapes)
-    shape_thread.start()
+    threads.append(threading.Thread(target=drop_shapes))
+    threads.append(threading.Thread(target=update_board))
+    for thread in threads:
+        thread.start()
 
 gameObjects.append(Text(0, 20, "TETRISSY", 128, True))
 gameObjects.append(Button(Utils.WIDTH/2-100, 300, 200, 120, "PLAY", start_game, {'normal': '#6464ff', 'hover': '#3333ff', 'pressed': '#aa33ff'}))
@@ -42,6 +55,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            gameActive = False
+            for thread in threads:
+                thread.join()
 
     screen.fill((10, 10, 10))
 
