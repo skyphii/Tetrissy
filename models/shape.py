@@ -2,6 +2,8 @@ import pygame
 from models.gameobject import GameObject
 
 class Shape(GameObject):
+    SQUARE = 50
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -20,8 +22,8 @@ class Shape(GameObject):
 class Line(Shape):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.width = 25
-        self.height = 100
+        self.width = Shape.SQUARE
+        self.height = Shape.SQUARE*4
 
     def draw(self, screen):
         pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(self.x, self.y, self.width, self.height))

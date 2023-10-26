@@ -2,8 +2,8 @@ import pygame
 from models.gameobject import GameObject
 
 class Utils:
-    WIDTH = 800
-    HEIGHT = 800
+    WIDTH = -1
+    HEIGHT = -1
 
 class Button(GameObject):
     def __init__(self, x, y, width, height, buttonText='Button', onclickFunction=None, colours={'normal': '#ffffff', 'hover': '#666666', 'pressed': '#333333'}, onePress=False):
@@ -52,12 +52,12 @@ class Button(GameObject):
         screen.blit(self.buttonSurface, self.buttonRect)
 
 class Text(GameObject):
-    def __init__(self, x, y, text="New Text", size=32, center=False):
+    def __init__(self, x, y, text, size=32, center=False, colour=(0, 255, 0), background=(100, 100, 255)):
         super().__init__()
         self.x = x
         self.y = y
         self.font = pygame.font.Font('font.ttf', size)
-        self.text = self.font.render(text, True, (0, 255, 0), (100, 100, 255))
+        self.text = self.font.render(text, True, colour, background)
         self.rect = self.text.get_rect()
         if center:
             self.x = Utils.WIDTH/2-self.rect.width/2
