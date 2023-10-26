@@ -1,5 +1,4 @@
 import pygame
-from utils import GameObject
 from utils import Button
 from shape import Shape
 
@@ -36,9 +35,6 @@ while running:
 
     for obj in gameObjects:
         obj.update(screen)
-
-    # shape.update()
-    # shape.draw()
 
     pygame.display.flip()
 

@@ -1,10 +1,5 @@
 import pygame
-
-class GameObject():
-    def __init__(self):
-        pass
-    def update(self, screen):
-        pass
+from models.gameobject import GameObject
 
 class Button(GameObject):
     def __init__(self, x, y, width, height, buttonText='Button', onclickFunction=None, colours={'normal': '#ffffff', 'hover': '#666666', 'pressed': '#333333'}, onePress=False):
