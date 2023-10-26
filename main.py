@@ -1,6 +1,7 @@
 import pygame
 from utils import Button
 from utils import Text
+from models.shape import Line
 
 pygame.init()
 
@@ -17,6 +18,7 @@ def test_function():
 
 gameObjects.append(Text(0, 20, "TETRISSY", 128, True))
 gameObjects.append(Button(WIDTH/2-100, 300, 200, 120, "PLAY", test_function, {'normal': '#6464ff', 'hover': '#3333ff', 'pressed': '#aa33ff'}))
+gameObjects.append(Line(100, -100))
 
 running = True
 while running:
