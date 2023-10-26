@@ -27,3 +27,12 @@ class Line(Shape):
 
     def draw(self, screen):
         pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(self.x, self.y, self.width, self.height))
+
+class Square(Shape):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        self.width = Shape.SQUARE*2
+        self.height = self.width
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(self.x, self.y, self.width, self.height))
