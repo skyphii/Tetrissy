@@ -1,4 +1,5 @@
 import pygame
+from utils import Button
 from shape import Shape
 
 pygame.init()
@@ -13,7 +14,12 @@ font = pygame.font.Font('font.ttf', 128)
 title = font.render('TETRISSY', True, (0, 255, 0), (100, 100, 255))
 titleRect = title.get_rect()
 
-shape = Shape(screen, 100, -100)
+def test_function():
+    print("working")
+
+playButton = Button(WIDTH/2-100, 300, 200, 120, "PLAY", test_function, {'normal': '#6464ff', 'hover': '#3333ff', 'pressed': '#aa33ff'})
+
+# shape = Shape(screen, 100, -100)
 
 running = True
 while running:
@@ -25,8 +31,10 @@ while running:
 
     screen.blit(title, (WIDTH/2-titleRect.width/2, 20), titleRect)
 
-    shape.update()
-    shape.draw()
+    playButton.update(screen)
+
+    # shape.update()
+    # shape.draw()
 
     pygame.display.flip()
 
