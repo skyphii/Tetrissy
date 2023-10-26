@@ -1,6 +1,5 @@
 import pygame
 from utils import Button
-from shape import Shape
 
 pygame.init()
 
@@ -20,8 +19,6 @@ def test_function():
     print("working")
 
 gameObjects.append(Button(WIDTH/2-100, 300, 200, 120, "PLAY", test_function, {'normal': '#6464ff', 'hover': '#3333ff', 'pressed': '#aa33ff'}))
-
-# shape = Shape(screen, 100, -100)
 
 running = True
 while running:
