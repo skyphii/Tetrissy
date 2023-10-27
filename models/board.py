@@ -12,7 +12,8 @@ class Board(GameObject):
         self.height = height
         self.shapes = []
         self.activeShape = -1
-        self.grid = [[0 for col in range(10)] for row in range(20)]
+        self.grid = [[0 for col in range(10)] for row in range(23)]
+        self.dropShape()
     
     def update(self, screen):
         for shape in self.shapes:
@@ -21,6 +22,10 @@ class Board(GameObject):
             self.activeShape = -1
         pygame.draw.rect(screen, (255, 255, 255), pygame.Rect(self.x-3, self.y-3, self.width+3, self.height+3), 2)
     
+    def onShapeLand(self, shape):
+        self.activeShape = -1
+        self.dropShape()
+
     def fall(self):
         if self.activeShape != -1:
             self.activeShape.fall()
@@ -28,6 +33,10 @@ class Board(GameObject):
     def dropShape(self):
         self.activeShape = self.getRandomShape()
         self.shapes.append(self.activeShape)
+        for y in range(3):
+            for x in range(len(self.activeShape.grid[y])):
+                if self.activeShape.grid[y][x] == 1:
+                    self.grid[y][3+x] = 9
     
     def getRandomShape(self):
         num = random.randint(0, 6)
@@ -35,7 +44,7 @@ class Board(GameObject):
         y = self.y-Shape.SQUARE*3
         match num:
             case 0:
-                return Line(x, y+Shape.SQUARE, self)
+                return Line(x, y, self)
             case 1:
                 return Square(x, y, self)
             case 2:
@@ -48,3 +57,11 @@ class Board(GameObject):
                 return Zig2(x, y, self)
             case 6:
                 return T(x, y, self)
+    
+    def print(self):
+        print('----------')
+        for y in range(len(self.grid)):
+            for x in range(len(self.grid[y])):
+                print(self.grid[y][x], end='')
+            print('\n')
+        print('----------')

@@ -21,18 +21,10 @@ gameObjects = []
 board = Board(Utils.WIDTH/2-250, 0, 500, 1000)
 threads = []
 
-def drop_shapes():
-    global gameActive
-    while gameActive:
-        sleep(0.25)
-        if board.activeShape == -1:
-            with lock:
-                board.dropShape()
-
 def update_board():
     global gameActive
     while gameActive:
-        sleep(1)
+        sleep(0.2)
         with lock:
             board.fall()
 
@@ -42,7 +34,6 @@ def start_game():
     gameObjects.clear()
     gameObjects.append(board)
     gameActive = True
-    threads.append(threading.Thread(target=drop_shapes))
     threads.append(threading.Thread(target=update_board))
     for thread in threads:
         thread.start()
