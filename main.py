@@ -24,7 +24,7 @@ threads = []
 def update_board():
     global gameActive
     while gameActive:
-        sleep(0.2)
+        sleep(0.5)
         with lock:
             board.fall()
 
@@ -44,6 +44,12 @@ gameObjects.append(Button(Utils.WIDTH/2-100, 300, 200, 120, "PLAY", start_game, 
 running = True
 while running:
     for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                board.moveShape(-1)
+            if event.key == pygame.K_RIGHT:
+                board.moveShape(1)
+        
         if event.type == pygame.QUIT:
             running = False
             gameActive = False
